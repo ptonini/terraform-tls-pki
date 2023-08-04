@@ -11,7 +11,8 @@ locals {
 }
 
 module "ca" {
-  source            = "../tls-certificate"
+  source            = "ptonini/certificate/tls"
+  version           = "~> v1.0.0"
   count             = var.root_ca == null ? 1 : 0
   common_name       = var.root_ca_common_name
   allowed_uses      = local.default_allowed_uses.ca
@@ -19,7 +20,8 @@ module "ca" {
 }
 
 module "intermediate_ca" {
-  source                = "../tls-certificate"
+  source                = "ptonini/certificate/tls"
+  version               = "~> v1.0.0"
   for_each              = var.intermediate_cas
   signer                = local.root_ca
   common_name           = each.key
@@ -29,7 +31,8 @@ module "intermediate_ca" {
 }
 
 module "client" {
-  source                = "../tls-certificate"
+  source                = "ptonini/certificate/tls"
+  version               = "~> v1.0.0"
   for_each              = var.clients
   signer                = local.root_ca
   common_name           = each.key
@@ -38,7 +41,8 @@ module "client" {
 }
 
 module "server" {
-  source                = "../tls-certificate"
+  source                = "ptonini/certificate/tls"
+  version               = "~> v1.0.0"
   for_each              = var.servers
   signer                = local.root_ca
   common_name           = each.key
