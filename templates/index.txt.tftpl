@@ -1,0 +1,3 @@
+%{ for cert in certificates }
+${format("%s %s %s %x unknown %s", cert.status, cert.expiration_date, cert.revocation_date, cert.serial, cert.dn)}
+%{ endfor ~}
