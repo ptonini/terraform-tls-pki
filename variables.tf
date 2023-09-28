@@ -11,15 +11,18 @@ variable "root_ca_common_name" {
 }
 
 variable "servers" {
-  default = {}
+  type = set(string)
+  default = []
 }
 
 variable "clients" {
-  default = {}
+  type = set(string)
+  default = []
 }
 
 variable "intermediate_cas" {
-  default = {}
+  type = set(string)
+  default = []
 }
 
 variable "default_validity_period_hours" {
